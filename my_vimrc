@@ -25,9 +25,11 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'DeleteTrailingWhitespace'
+
+"" Syntax
+NeoBundle 'scrooloose/syntastic'
 
 "" Git
 NeoBundle 'airblade/vim-gitgutter'
@@ -44,6 +46,14 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'c.vim'
 
 "" Python
+NeoBundle "davidhalter/jedi-vim"
+NeoBundle "majutsushi/tagbar"
+NeoBundle "Yggdroot/indentLine"
+
+"" Javascript
+"" HTML/CSS
+NeoBundle 'mattn/emmet-vim'
+
 call neobundle#end()
 
 " Required:
@@ -104,7 +114,7 @@ set number
 
 let no_buffers_menu=1
 if !exists('g:not_finsh_neobundle')
-  colorscheme molokai 
+  colorscheme molokai
 endif
 
 set mousemodel=popup
@@ -152,6 +162,11 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+" indent line
+let g:indentLine_enabled = 1
+let g:indentLine_color_term = 239
+let g:indentLine_char = '|'
 
 "*********************************************************************"
 "" Abbreviations
@@ -289,17 +304,19 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 
+" Tagbar
+nmap <F3> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
 "" Buffer nav
 noremap <leader>z :bp<CR>
-noremap <leader>q :bp<CR>
 noremap <leader>x :bn<CR>
-noremap <leader>w :bn<CR>
 
 "" Close buffer
 noremap <leader>c :bd<CR>
 
 "" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
+nnoremap <leader>q :noh<cr>
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -307,4 +324,3 @@ vmap > >gv
 
 " Open current line on GitHub
 noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
-
