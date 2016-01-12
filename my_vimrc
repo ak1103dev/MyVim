@@ -30,6 +30,7 @@ NeoBundle 'DeleteTrailingWhitespace'
 
 "" Syntax
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Townk/vim-autoclose'
 
 "" Git
 NeoBundle 'airblade/vim-gitgutter'
@@ -51,8 +52,11 @@ NeoBundle "majutsushi/tagbar"
 NeoBundle "Yggdroot/indentLine"
 
 "" Javascript
+NeoBundle 'leafgarland/typescript-vim'
+
 "" HTML/CSS
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'digitaltoad/vim-jade'
 
 call neobundle#end()
 
@@ -104,6 +108,9 @@ set noswapfile
 set fileformats=unix,dos,mac
 set showcmd
 set shell=/bin/sh
+
+"" Patse & NoPaste
+set pastetoggle=<F3>
 
 "*********************************************************************"
 "" Visual Settings
@@ -305,8 +312,8 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 
 " Tagbar
-nmap <F3> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
+"nmap <F3> :TagbarToggle<CR>
+"let g:tagbar_autofocus = 1
 
 "" Buffer nav
 noremap <leader>z :bp<CR>
