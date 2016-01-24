@@ -30,7 +30,7 @@ NeoBundle 'DeleteTrailingWhitespace'
 
 "" Syntax
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'Raimondi/delimitMate'
 
 "" Git
 NeoBundle 'airblade/vim-gitgutter'
@@ -45,6 +45,8 @@ NeoBundle 'tomasr/molokai'
 
 "" C/C++
 NeoBundle 'c.vim'
+
+"" C#
 
 "" Python
 NeoBundle "davidhalter/jedi-vim"
