@@ -28,6 +28,7 @@ NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'DeleteTrailingWhitespace'
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'foosoft/vim-argwrap'
 
 "" Syntax
 NeoBundle 'scrooloose/syntastic'
@@ -317,6 +318,13 @@ let g:syntastic_aggregate_errors = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
+
+"" argument
+nnoremap <silent> <leader>a :ArgWrap<CR>
+"let g:argwrap_line_prefix = '\'
+let g:argwrap_padded_braces = '[{'
+"let g:argwrap_tail_comma = 1
+"let g:argwrap_wrap_closing_brace = 0
 
 "" Buffer nav
 noremap <leader>z :bp<CR>
