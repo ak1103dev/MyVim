@@ -25,12 +25,14 @@ NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'justincampbell/vim-eighties'
 
 "" Syntax
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mtscout6/syntastic-local-eslint.vim'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'tpope/vim-surround'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'DeleteTrailingWhitespace'
 NeoBundle 'Yggdroot/indentLine'
@@ -82,6 +84,10 @@ set incsearch
 set ignorecase
 set smartcase
 
+set fileformats=unix,dos,mac
+set showcmd
+set shell=/bin/sh
+
 "*********************************************************************"
 "" Visual Settings
 "*********************************************************************"
@@ -111,7 +117,6 @@ if exists("*fugitive#statusline")
 endif
 
 "" vim-airline
-
 let g:airline_theme = 'dark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -139,6 +144,13 @@ let g:indentLine_char = '|'
 "" WhiteSpace
 let g:DeleteTrailingWhitespace = 1
 let g:DeleteTrailingWhitespace_Action = 'delete'
+
+"" vim-eighties
+let g:eighties_enabled = 1
+let g:eighties_minimum_width = 80
+let g:eighties_extra_width = 0
+let g:eighties_compute = 1
+let g:eighties_bufname_additional_patterns = ['fugitiveblame']
 
 " syntastic
 let g:syntastic_always_populate_loc_list=1
@@ -191,14 +203,13 @@ let g:argwrap_padded_braces = '[{'
 "*********************************************************************"
 "" Functions
 "*********************************************************************"
-""if !exists('*s:setupWrapping')
-""  function s:setupWrapping()
-""    set wrap
-""    set wm=2
-""    set textwidth=79
-""  endfunction
-""endif
-
+if !exists('*s:setupWrapping')
+  function s:setupWrapping()
+    set wrap
+    set wm=2
+    set textwidth=79
+  endfunction
+endif
 
 "*********************************************************************"
 "" Autocmd Rules
@@ -237,3 +248,24 @@ nnoremap <leader>q :noh<cr>
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
+
+"*********************************************************************"
+"" Easymotion
+"*********************************************************************"
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+" Gif config
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
