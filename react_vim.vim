@@ -78,11 +78,18 @@ set softtabstop=0
 set shiftwidth=2
 set expandtab
 
+"" Enable hidden buffers
+set hidden
+
 "" Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
+"" Directories for swp files
+set nobackup
+set noswapfile
 
 set fileformats=unix,dos,mac
 set showcmd
@@ -92,8 +99,10 @@ set shell=/bin/sh
 "" Visual Settings
 "*********************************************************************"
 syntax on
+set ruler
 set number
 
+let no_buffers_menu=1
 if !exists('g:not_finsh_neobundle')
   colorscheme molokai
 endif
@@ -215,11 +224,32 @@ endif
 "" Autocmd Rules
 "*********************************************************************"
 
+"" The PC is fast enough, do syntax highlight syncing from start
+augroup vimrc-sync-fromstart
+  autocmd!
+  autocmd BufEnter * :syntax sync fromstart
+augroup END
+
 "" Remember cursor position
 augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
+
+"" txt
+augroup vimrc-wrapping
+  autocmd!
+  autocmd BufRead,BufNewFile *.txt call s:setupWrapping()
+augroup END
+
+"" make/cmake
+augroup vimrc-make-cmake
+  autocmd!
+  autocmd FileType make setlocal noexpandtab
+  autocmd BufNewFile,BufRead CMakeLists.txt setlocal filetype=cmake
+augroup END
+
+set autoread
 
 "*********************************************************************"
 "" Mappings
